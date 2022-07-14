@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "target": "es2017",
+    "module": "commonjs", // ESNext commonjs
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "noEmit": true,
+    "lib": ["es6"],
+    "moduleResolution": "node"
+  },
+  "ts-node": {
+    "files": true
+  },
+  "paths": {
+    "@app/*": ["src/*"]
+  },
+  "include": [
+    "./**/*.ts",
+    "../sharedApi"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}
