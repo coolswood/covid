@@ -1,74 +1,72 @@
 import ReactEchartsCore from 'echarts-for-react/lib/core';
-import {LineChart} from 'echarts/charts';
-import {GridComponent, VisualMapComponent} from 'echarts/components';
+import { LineChart } from 'echarts/charts';
+import { GridComponent, VisualMapComponent } from 'echarts/components';
 import * as echarts from 'echarts/core';
-import {CanvasRenderer} from 'echarts/renderers';
-import React, {Component} from 'react';
+import { CanvasRenderer } from 'echarts/renderers';
+import React, { Component } from 'react';
 
 echarts.use([VisualMapComponent, GridComponent, CanvasRenderer, LineChart]);
 
 type LineChartType = {
-    data: number[];
+  data: {
+    country: string;
+    series: number[];
+  }[];
+  days: string[];
 };
 
 export default class LineCharts extends Component<LineChartType> {
-    state = {
-        options: {},
+  state = {
+    options: {},
+  };
+
+  componentDidMount() {
+    this.setState({
+      options: this.getOption(),
+    });
+  }
+
+  getOption = () => {
+    const { data, days } = this.props;
+
+    return {
+      tooltip: {
+        trigger: 'axis',
+      },
+      legend: {
+        data: data.map(item => item.country),
+      },
+      xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: days,
+      },
+      yAxis: {
+        type: 'value',
+      },
+      grid: {
+        top: 20,
+        bottom: 20,
+        right: 0,
+        left: 23,
+      },
+      series: data.map(item => ({
+        data: item.series,
+        type: 'line',
+        smooth: true,
+        symbolSize: 6,
+      })),
     };
+  };
 
-    componentDidMount() {
-        this.setState({
-            options: this.getOption(),
-        });
-    }
-
-    getOption = () => {
-        const {data} = this.props;
-
-        return {
-            xAxis: {
-                type: 'category',
-                axisLine: {
-                    show: false,
-                },
-                axisTick: {
-                    show: false,
-                },
-            },
-            yAxis: {
-                type: 'value',
-                axisLine: {
-                    show: false,
-                },
-                axisTick: {
-                    show: false,
-                },
-            },
-            grid: {
-                top: 20,
-                bottom: 20,
-                right: 0,
-                left: 23,
-            },
-            series: [
-                {
-                    data: data,
-                    type: 'line',
-                    smooth: true,
-                    symbolSize: 6,
-                },
-            ],
-        };
-    };
-
-    render() {
-        return (
-            <ReactEchartsCore
-                echarts={echarts}
-                option={this.state.options}
-                style={{height: '200px'}}
-                notMerge={true}
-            />
-        );
-    }
+  render() {
+    return (
+      <ReactEchartsCore
+        echarts={echarts}
+        option={this.state.options}
+        style={{ height: '200px' }}
+        notMerge={true}
+      />
+    );
+  }
 }

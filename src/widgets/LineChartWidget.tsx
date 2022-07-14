@@ -24,7 +24,11 @@ const timeline = [
   },
 ];
 
-export const LineChartWidget = () => {
+export const LineChartWidget = ({
+  selectedCountries,
+}: {
+  selectedCountries: string[];
+}) => {
   const [selectedCases, setSelectedCases] = useState(cases[0].value);
   const [selectedTimeline, setSelectedTimeline] = useState(timeline[0].value);
 
@@ -51,7 +55,19 @@ export const LineChartWidget = () => {
   return (
     <div>
       <div>
-        <LineCharts data={[1, 2, 3, 4, 5]} />
+        <LineCharts
+          days={['2020-01-01', '2020-01-02', '2020-01-03', '2020-01-04']}
+          data={[
+            {
+              country: 'Afghanistan',
+              series: [1, 2, 3],
+            },
+            {
+              country: 'hz',
+              series: [6, 4, 0],
+            },
+          ]}
+        />
         <div>
           <ToggleButtons
             buttons={cases}

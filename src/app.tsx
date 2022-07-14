@@ -19,6 +19,7 @@ const chartToggle = [
 export const App = () => {
   const theme = useTheme();
   const [selectedGraph, setSelectedGraph] = useState(chartToggle[0].value);
+  const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
 
   return (
     <div
@@ -26,14 +27,17 @@ export const App = () => {
         background: theme.palette.background.default,
       }}
     >
-      <MultipleSelectCheckmarks />
+      <MultipleSelectCheckmarks
+        selectedCountries={selectedCountries}
+        toggleCountry={setSelectedCountries}
+      />
       <div>
         <ToggleButtons
           buttons={chartToggle}
           onChange={setSelectedGraph}
           value={selectedGraph}
         />
-        <LineChartWidget />
+        <LineChartWidget selectedCountries={selectedCountries} />
       </div>
     </div>
   );
