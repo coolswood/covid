@@ -4,6 +4,9 @@ import MultipleSelectCheckmarks from 'src/components/DropDown';
 import { LineChartWidget } from 'src/widgets/LineChartWidget';
 import ToggleButtons from 'src/components/ToggleButtons';
 import { useTheme } from '@mui/material/styles';
+import { useQuery } from 'react-query';
+import axios from 'axios';
+import { BarChartWidget } from 'src/widgets/BarChartWidget';
 
 const chartToggle = [
   {
@@ -21,6 +24,19 @@ export const App = () => {
   const [selectedGraph, setSelectedGraph] = useState(chartToggle[0].value);
   const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
 
+  const { isLoading, error, data, isFetching } = useQuery(
+    'repoData',
+    () => axios.get('/api/countries').then(res => res.data),
+    {
+      staleTime: Infinity,
+      onSuccess: data => {
+        setSelectedCountries([...data].splice(0, 10));
+      },
+    }
+  );
+
+  if (isLoading) return null;
+
   return (
     <div
       style={{
@@ -28,6 +44,7 @@ export const App = () => {
       }}
     >
       <MultipleSelectCheckmarks
+        countries={data}
         selectedCountries={selectedCountries}
         toggleCountry={setSelectedCountries}
       />
@@ -37,7 +54,11 @@ export const App = () => {
           onChange={setSelectedGraph}
           value={selectedGraph}
         />
-        <LineChartWidget selectedCountries={selectedCountries} />
+        {selectedGraph === 'cases' ? (
+          <LineChartWidget selectedCountries={selectedCountries} />
+        ) : (
+          <BarChartWidget selectedCountries={selectedCountries} />
+        )}
       </div>
     </div>
   );

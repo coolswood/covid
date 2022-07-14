@@ -18,7 +18,7 @@ const prepareData = (data: any) => {
     }));
   }
 
-  console.log(formattedData);
+  return formattedData;
 };
 
 const db = prepareData(data);
@@ -37,19 +37,9 @@ app.register(cors, {
   methods: ['GET', 'POST', 'PUT'],
 });
 
-app.put<{ Body: api.auth.request; Reply: api.auth.response }>(
-  '/api/auth',
-  async (request, reply) => {
-    const user = request.body.user;
-
-    // This assumes the addition to the database, encryption and other things. But since this is not a condition of the test job,
-    // I will just use the username in the cookie
-
-    reply.setCookie('user', user);
-
-    return reply.send({});
-  }
-);
+app.get('/api/countries', async (request, reply) => {
+  return reply.send(Object.keys(db));
+});
 
 (async () => {
   try {

@@ -1,5 +1,5 @@
 import ReactEchartsCore from 'echarts-for-react/lib/core';
-import { LineChart } from 'echarts/charts';
+import { BarChart } from 'echarts/charts';
 import {
   GridComponent,
   LegendComponent,
@@ -14,20 +14,14 @@ echarts.use([
   VisualMapComponent,
   GridComponent,
   CanvasRenderer,
-  LineChart,
+  BarChart,
   TooltipComponent,
   LegendComponent,
 ]);
 
-type LineChartType = {
-  data: {
-    country: string;
-    series: number[];
-  }[];
-  days: string[];
-};
+type LineChartType = {};
 
-export default class LineCharts extends Component<LineChartType> {
+export default class BarCharts extends Component<LineChartType> {
   state = {
     options: {},
   };
@@ -44,31 +38,38 @@ export default class LineCharts extends Component<LineChartType> {
     return {
       tooltip: {
         trigger: 'axis',
-      },
-      legend: {
-        data: data.map(item => item.country),
-      },
-      xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: days,
-      },
-      yAxis: {
-        type: 'value',
+        axisPointer: {
+          type: 'shadow',
+        },
       },
       grid: {
-        top: 20,
-        bottom: 20,
-        right: 0,
-        left: 23,
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true,
       },
-      series: data.map(item => ({
-        name: item.country,
-        data: item.series,
-        type: 'line',
-        smooth: true,
-        symbolSize: 6,
-      })),
+      xAxis: [
+        {
+          type: 'category',
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          axisTick: {
+            alignWithLabel: true,
+          },
+        },
+      ],
+      yAxis: [
+        {
+          type: 'value',
+        },
+      ],
+      series: [
+        {
+          name: 'Direct',
+          type: 'bar',
+          barWidth: '60%',
+          data: [10, 52, 200, 334, 390, 330, 220],
+        },
+      ],
     };
   };
 

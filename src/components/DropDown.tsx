@@ -18,23 +18,12 @@ const MenuProps = {
   },
 };
 
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-];
-
 export default function MultipleSelectCheckmarks({
+  countries = [],
   selectedCountries,
   toggleCountry,
 }: {
+  countries: string[];
   selectedCountries: string[];
   toggleCountry: (country: string[]) => void;
 }) {
@@ -60,7 +49,7 @@ export default function MultipleSelectCheckmarks({
           renderValue={selected => selected.join(', ')}
           MenuProps={MenuProps}
         >
-          {names.map(name => (
+          {countries.map(name => (
             <MenuItem key={name} value={name}>
               <Checkbox checked={selectedCountries.indexOf(name) > -1} />
               <ListItemText primary={name} />

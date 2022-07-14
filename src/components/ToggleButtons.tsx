@@ -24,7 +24,9 @@ export default function ToggleButtons({
       onChange={(e, val) => onChange(val)}
     >
       {buttons.map(({ value, label }) => (
-        <ToggleButton value={value}>{label}</ToggleButton>
+        <ToggleButton key={value} value={value}>
+          {label}
+        </ToggleButton>
       ))}
     </ToggleButtonGroup>
   );

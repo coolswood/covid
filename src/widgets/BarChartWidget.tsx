@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import LineCharts from 'src/components/LineChart';
 import ToggleButtons from 'src/components/ToggleButtons';
+import BarCharts from 'src/components/BarChart';
 
 const cases = [
   {
@@ -8,29 +8,17 @@ const cases = [
     label: 'death',
   },
   {
-    value: 'Confirmed cases',
-    label: 'confirmed',
+    value: 'Total cases',
+    label: 'total',
   },
 ];
 
-const timeline = [
-  {
-    value: 'Daily',
-    label: 'daily',
-  },
-  {
-    value: 'Common',
-    label: 'common',
-  },
-];
-
-export const LineChartWidget = ({
+export const BarChartWidget = ({
   selectedCountries,
 }: {
   selectedCountries: string[];
 }) => {
   const [selectedCases, setSelectedCases] = useState(cases[0].value);
-  const [selectedTimeline, setSelectedTimeline] = useState(timeline[0].value);
 
   const data = [
     {
@@ -55,25 +43,12 @@ export const LineChartWidget = ({
   return (
     <div>
       <div>
-        <LineCharts
-          days={['2020-01-01', '2020-01-02', '2020-01-03', '2020-01-04']}
-          data={[
-            {
-              country: 'Afghanistan',
-              series: [1, 2, 3],
-            },
-          ]}
-        />
+        <BarCharts />
         <div>
           <ToggleButtons
             buttons={cases}
             onChange={setSelectedCases}
             value={selectedCases}
-          />
-          <ToggleButtons
-            buttons={timeline}
-            onChange={setSelectedTimeline}
-            value={selectedTimeline}
           />
         </div>
       </div>
