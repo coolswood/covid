@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b19e971b-cb4f-4214-a703-1fa0ce5281de" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/server/data.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/db/index.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DropDown.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DropDown.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LineChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LineChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/widgets/LineChartWidget.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/LineChartWidget.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pnpm-lock.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -69,6 +68,23 @@
       <recent name="$PROJECT_DIR$/src/components" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/server/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -83,7 +99,7 @@
       <workItem from="1656097411796" duration="383000" />
       <workItem from="1656139196572" duration="1402000" />
       <workItem from="1656185992877" duration="3189000" />
-      <workItem from="1657804439299" duration="7607000" />
+      <workItem from="1657804439299" duration="9171000" />
     </task>
     <servers />
   </component>

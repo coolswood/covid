@@ -1,6 +1,27 @@
 import fastify from 'fastify';
 import cookie, { FastifyCookieOptions } from '@fastify/cookie';
 import cors from '@fastify/cors';
+import data from './data';
+
+const prepareData = (data: any) => {
+  const formattedData: any = {};
+
+  for (let i in data) {
+    const item = data[i];
+
+    formattedData[item.location] = item.data.map((d: any) => ({
+      date: d.date,
+      total_cases: d.total_cases,
+      new_cases: d.new_cases,
+      total_deaths: d.total_deaths || 0,
+      new_deaths: d.new_deaths || 0,
+    }));
+  }
+
+  console.log(formattedData);
+};
+
+const db = prepareData(data);
 
 const app = fastify({ logger: true });
 
