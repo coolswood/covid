@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ToggleButtons from 'src/components/ToggleButtons';
 import BarCharts from 'src/components/BarChart';
+import { useQuery } from 'react-query';
+import axios from 'axios';
 
 const cases = [
   {
@@ -20,30 +22,22 @@ export const BarChartWidget = ({
 }) => {
   const [selectedCases, setSelectedCases] = useState(cases[0].value);
 
-  const data = [
+  const { isLoading, error, data, isFetching } = useQuery(
+    'barChart',
+    () => axios.get('/api/barChart').then(res => res.data),
     {
-      location: 'Afghanistan',
-      total_cases: 183285,
-      new_cases: 13,
-      total_deaths: 7728,
-      new_deaths: 0,
-      code: 'AFG',
-    },
-    {
-      location: 'Africa',
-      last_updated_date: '2022-07-13',
-      total_cases: 12155871,
-      new_cases: 3596,
-      total_deaths: 255473,
-      new_deaths: 27,
-      code: 'OWID_AFR',
-    },
-  ];
+      staleTime: Infinity,
+    }
+  );
+
+  console.log(data);
+
+  if (isLoading) return null;
 
   return (
     <div>
       <div>
-        <BarCharts />
+        <BarCharts data={[100, 2, 5]} countries={['Af', 'sadasd', 'sad']} />
         <div>
           <ToggleButtons
             buttons={cases}

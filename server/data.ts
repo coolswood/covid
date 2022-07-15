@@ -2205,4 +2205,4 @@ export default {
       },
     ],
   },
-} as const;
+};

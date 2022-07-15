@@ -19,9 +19,12 @@ echarts.use([
   LegendComponent,
 ]);
 
-type LineChartType = {};
+type BarChartsType = {
+  data: number[];
+  countries: string[];
+};
 
-export default class BarCharts extends Component<LineChartType> {
+export default class BarCharts extends Component<BarChartsType> {
   state = {
     options: {},
   };
@@ -33,7 +36,7 @@ export default class BarCharts extends Component<LineChartType> {
   }
 
   getOption = () => {
-    const { data, days } = this.props;
+    const { data, countries } = this.props;
 
     return {
       tooltip: {
@@ -51,7 +54,7 @@ export default class BarCharts extends Component<LineChartType> {
       xAxis: [
         {
           type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          data: countries,
           axisTick: {
             alignWithLabel: true,
           },
@@ -66,8 +69,8 @@ export default class BarCharts extends Component<LineChartType> {
         {
           name: 'Direct',
           type: 'bar',
-          barWidth: '60%',
-          data: [10, 52, 200, 334, 390, 330, 220],
+          barWidth: '90%',
+          data: data,
         },
       ],
     };

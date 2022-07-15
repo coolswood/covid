@@ -59,8 +59,8 @@ export default class LineCharts extends Component<LineChartType> {
       grid: {
         top: 20,
         bottom: 20,
-        right: 0,
-        left: 23,
+        right: 40,
+        left: 40,
       },
       series: data.map(item => ({
         name: item.country,

@@ -25,7 +25,7 @@ export const App = () => {
   const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
 
   const { isLoading, error, data, isFetching } = useQuery(
-    'repoData',
+    'countries',
     () => axios.get('/api/countries').then(res => res.data),
     {
       staleTime: Infinity,
