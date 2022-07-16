@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b19e971b-cb4f-4214-a703-1fa0ce5281de" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/widgets/LineChartWidget.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/data.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DropDown.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DropDown.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LineChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LineChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ToggleButtons.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ToggleButtons.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/widgets/LineChartWidget.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/LineChartWidget.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +53,7 @@
     "nodejs_package_manager_path": "pnpm",
     "prettierjs.PrettierConfiguration.Package": "/Users/daniilsugonaev/Desktop/projects/covid/node_modules/.pnpm/prettier@2.7.1/node_modules/prettier",
     "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "/Users/daniilsugonaev/Desktop/projects/covid/server/node_modules/typescript/lib"
+    "ts.external.directory.path": "/Users/daniilsugonaev/Desktop/projects/covid/node_modules/typescript/lib"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -110,7 +99,7 @@
       <workItem from="1656139196572" duration="1402000" />
       <workItem from="1656185992877" duration="3189000" />
       <workItem from="1657804439299" duration="20354000" />
-      <workItem from="1657979037874" duration="8920000" />
+      <workItem from="1657979037874" duration="9432000" />
     </task>
     <servers />
   </component>
