@@ -6,6 +6,8 @@ import { ApiRequest } from 'src/helper';
 import Loader from 'src/components/Loader';
 import { CASES, TIMELINE } from 'src/constants';
 
+import styles from './LineChartWidget.module.scss';
+
 export const LineChartWidget = ({
   selectedCountries,
 }: {
@@ -42,11 +44,7 @@ export const LineChartWidget = ({
     <div>
       <div>
         <LineCharts days={data.dates} data={data.countries} />
-        <div
-          style={{
-            display: 'flex',
-          }}
-        >
+        <div className={styles.buttonsWrap}>
           <ToggleButtons
             buttons={CASES}
             onChange={setSelectedCases}

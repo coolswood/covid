@@ -47,18 +47,22 @@ export const App = () => {
         selectedCountries={selectedCountries}
         toggleCountry={setSelectedCountries}
       />
-      <div>
+      <div
+        style={{
+          margin: '20px 0',
+        }}
+      >
         <ToggleButtons
           buttons={CHART_TOGGLE}
           onChange={setSelectedGraph}
           value={selectedGraph}
         />
-        {selectedGraph === 'cases' ? (
-          <LineChartWidget selectedCountries={selectedCountries} />
-        ) : (
-          <BarChartWidget selectedCountries={selectedCountries} />
-        )}
       </div>
+      {selectedGraph === 'cases' ? (
+        <LineChartWidget selectedCountries={selectedCountries} />
+      ) : (
+        <BarChartWidget selectedCountries={selectedCountries} />
+      )}
     </div>
   );
 };

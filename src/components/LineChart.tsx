@@ -55,6 +55,7 @@ export default class LineCharts extends Component<LineChartType> {
         trigger: 'axis',
       },
       legend: {
+        show: data.length < 30,
         data: data.map(item => item.country),
       },
       xAxis: {

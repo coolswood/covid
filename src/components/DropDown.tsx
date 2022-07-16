@@ -31,10 +31,7 @@ export default function MultipleSelectCheckmarks({
     const {
       target: { value },
     } = event;
-    toggleCountry(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value
-    );
+    toggleCountry(typeof value === 'string' ? value.split(',') : value);
   };
 
   return (
