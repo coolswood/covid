@@ -1,7 +1,7 @@
 import fastify from 'fastify';
 import cookie, { FastifyCookieOptions } from '@fastify/cookie';
 import cors from '@fastify/cors';
-import data from './data';
+import axios from 'axios';
 
 type dbType = {
   [key: string]: {
@@ -14,15 +14,15 @@ type dbType = {
 };
 
 const prepareData = async () => {
-  // const data = await axios.get(
-  //   'https://covid.ourworldindata.org/data/owid-covid-data.json'
-  // );
+  const data = await axios.get(
+    'https://covid.ourworldindata.org/data/owid-covid-data.json'
+  );
 
   const formattedData: dbType = {};
 
-  for (let i in data) {
+  for (let i in data.data) {
     // @ts-ignore
-    const item = data[i];
+    const item = data.data[i];
 
     if (item?.location === undefined) continue;
 
@@ -54,33 +54,60 @@ app.register(cors, {
   methods: ['GET', 'POST', 'PUT'],
 });
 
-app.get('/api/countries', async (request, reply) => {
-  return reply.send(Object.keys(db));
-});
+app.get<{ Querystring: {}; ServerResponse: string[] }>(
+  '/api/countries',
+  async (request, reply) => {
+    const data = await db;
 
-app.get('/api/lineChart', async (request, reply) => {
-  // const { countries } = request.query;
-  const countries = ['Afghanistan'];
+    return reply.send(Object.keys(data));
+  }
+);
+
+const mapData = {
+  confirmed: {
+    total: 'total_cases',
+    new: 'new_cases',
+  },
+  deaths: {
+    total: 'total_deaths',
+    new: 'new_deaths',
+  },
+} as const;
+
+app.post<{
+  Body: {
+    countries: string[];
+    status: 'confirmed' | 'deaths';
+    timeline: 'total' | 'new';
+  };
+  ServerResponse: {
+    countries: { country: string; series: number[] }[];
+    timeline: string[];
+  };
+}>('/api/lineChart', async (request, reply) => {
+  const { countries, status, timeline } = request.body;
   const rawData = await db;
+  const selectedCountries =
+    countries.length !== 0 ? countries : Object.keys(rawData);
 
-  const countriesWithData = countries.map(country => ({
+  const countriesWithData = selectedCountries.map(country => ({
     country,
-    series: rawData[country].map(d => d.new_deaths),
+    series: rawData[country].map(d => d[mapData[status][timeline]]),
   }));
 
-  const timeLine = new Set();
+  const dates = new Set();
 
-  countries.forEach(country => {
+  selectedCountries.forEach(country => {
     const item = rawData[country];
 
     item.forEach(i => {
-      timeLine.add(i.date);
+      dates.add(i.date);
     });
   });
 
   return reply.send({
     countries: countriesWithData,
-    timeLine: Array.from(timeLine),
+    dates: Array.from(dates),
   });
 });
 
@@ -95,8 +122,6 @@ app.get('/api/barChart', async (request, reply) => {
       return acc;
     }, 0),
   }));
-
-  console.log(resultSum);
 
   return reply.send(Object.keys(db));
 });

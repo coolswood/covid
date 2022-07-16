@@ -3,12 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="b19e971b-cb4f-4214-a703-1fa0ce5281de" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/data.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BarChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BarChart.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/LineChart.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LineChart.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/widgets/BarChartWidget.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/BarChartWidget.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ToggleButtons.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ToggleButtons.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helper.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/widgets/LineChartWidget.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/LineChartWidget.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,23 +43,23 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/daniilsugonaev/Desktop/projects/covid/src/widgets",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "pnpm",
-    "prettierjs.PrettierConfiguration.Package": "/Users/daniilsugonaev/Desktop/projects/covid/node_modules/.pnpm/prettier@2.7.1/node_modules/prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "/Users/daniilsugonaev/Desktop/projects/covid/node_modules/typescript/lib"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/daniilsugonaev/Desktop/projects/covid/src/widgets&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/daniilsugonaev/Desktop/projects/covid/node_modules/.pnpm/prettier@2.7.1/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/daniilsugonaev/Desktop/projects/covid/node_modules/typescript/lib&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/widgets" />
@@ -102,12 +102,23 @@
       <workItem from="1656097411796" duration="383000" />
       <workItem from="1656139196572" duration="1402000" />
       <workItem from="1656185992877" duration="3189000" />
-      <workItem from="1657804439299" duration="16943000" />
+      <workItem from="1657804439299" duration="20354000" />
+      <workItem from="1657979037874" duration="3649000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

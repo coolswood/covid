@@ -9,6 +9,7 @@ import {
 import * as echarts from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
 import React, { Component } from 'react';
+import isEqual from 'lodash/isEqual';
 
 echarts.use([
   VisualMapComponent,
@@ -36,6 +37,18 @@ export default class LineCharts extends Component<LineChartType> {
     this.setState({
       options: this.getOption(),
     });
+  }
+
+  componentDidUpdate(
+    prevProps: Readonly<LineChartType>,
+    prevState: Readonly<{}>,
+    snapshot?: any
+  ) {
+    if (!isEqual(prevProps.data, this.props.data)) {
+      this.setState({
+        options: this.getOption(),
+      });
+    }
   }
 
   getOption = () => {

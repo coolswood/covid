@@ -2,20 +2,20 @@ import * as React from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-type ToggleButtonsType = {
-  value: string;
-  onChange: (value: string) => void;
+type ToggleButtonsType<T> = {
+  value: T;
+  onChange: (value: T) => void;
   buttons: {
-    value: string;
+    value: T;
     label: string;
   }[];
 };
 
-export default function ToggleButtons({
+export default function ToggleButtons<T>({
   buttons,
   value,
   onChange,
-}: ToggleButtonsType) {
+}: ToggleButtonsType<T>) {
   return (
     <ToggleButtonGroup
       color="primary"
@@ -24,7 +24,7 @@ export default function ToggleButtons({
       onChange={(e, val) => onChange(val)}
     >
       {buttons.map(({ value, label }) => (
-        <ToggleButton key={value} value={value}>
+        <ToggleButton key={label} value={value}>
           {label}
         </ToggleButton>
       ))}

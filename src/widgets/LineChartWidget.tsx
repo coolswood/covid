@@ -2,26 +2,32 @@ import React, { useState } from 'react';
 import LineCharts from 'src/components/LineChart';
 import ToggleButtons from 'src/components/ToggleButtons';
 import { useQuery } from 'react-query';
-import axios from 'axios';
+import { ApiRequest } from 'src/helper';
 
-const cases = [
+const cases: {
+  value: 'deaths' | 'confirmed';
+  label: string;
+}[] = [
   {
-    value: 'Death count',
-    label: 'death',
+    value: 'deaths',
+    label: 'Death count',
   },
   {
-    value: 'Confirmed cases',
-    label: 'confirmed',
+    value: 'confirmed',
+    label: 'Confirmed cases',
   },
 ];
 
-const timeline = [
+const timeline: {
+  value: 'new' | 'total';
+  label: string;
+}[] = [
   {
-    value: 'Daily',
+    value: 'new',
     label: 'daily',
   },
   {
-    value: 'Common',
+    value: 'total',
     label: 'common',
   },
 ];
@@ -31,23 +37,50 @@ export const LineChartWidget = ({
 }: {
   selectedCountries: string[];
 }) => {
-  const [selectedCases, setSelectedCases] = useState(cases[0].value);
-  const [selectedTimeline, setSelectedTimeline] = useState(timeline[0].value);
+  const [selectedCases, setSelectedCases] = useState<'confirmed' | 'deaths'>(
+    cases[0].value
+  );
+  const [selectedTimeline, setSelectedTimeline] = useState<'total' | 'new'>(
+    timeline[0].value
+  );
 
   const { isLoading, error, data, isFetching } = useQuery(
-    'lineChart',
-    () => axios.get('/api/lineChart').then(res => res.data),
+    ['lineChart', selectedCases, selectedTimeline, selectedCountries],
+    () =>
+      ApiRequest<
+        {
+          countries: { country: string; series: number[] }[];
+          dates: string[];
+        },
+        {
+          countries: string[];
+          status: 'confirmed' | 'deaths';
+          timeline: 'total' | 'new';
+        }
+      >(
+        'lineChart',
+        {
+          countries: selectedCountries,
+          status: selectedCases,
+          timeline: selectedTimeline,
+        },
+        'POST'
+      ),
     {
+      cacheTime: Infinity,
       staleTime: Infinity,
+      onSuccess: data => {
+        console.log(11);
+      },
     }
   );
 
-  if (isLoading) return null;
+  if (isLoading || data === undefined) return null;
 
   return (
     <div>
       <div>
-        <LineCharts days={data.timeLine} data={data.countries} />
+        <LineCharts days={data.dates} data={data.countries} />
         <div>
           <ToggleButtons
             buttons={cases}

@@ -23,12 +23,14 @@
     "clsx": "^1.1.1",
     "echarts": "^5.3.3",
     "echarts-for-react": "^3.0.2",
+    "lodash": "^4.17.21",
     "material": "link:@mui/@mui/material",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-query": "^3.39.1"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.182",
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
     "prettier": "^2.7.1",
