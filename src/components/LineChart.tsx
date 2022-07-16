@@ -39,11 +39,7 @@ export default class LineCharts extends Component<LineChartType> {
     });
   }
 
-  componentDidUpdate(
-    prevProps: Readonly<LineChartType>,
-    prevState: Readonly<{}>,
-    snapshot?: any
-  ) {
+  componentDidUpdate(prevProps: LineChartType, prevState: Readonly<{}>) {
     if (!isEqual(prevProps.data, this.props.data)) {
       this.setState({
         options: this.getOption(),
@@ -70,7 +66,7 @@ export default class LineCharts extends Component<LineChartType> {
         type: 'value',
       },
       grid: {
-        top: 20,
+        top: '30%',
         bottom: 20,
         right: 40,
         left: 40,
@@ -90,7 +86,6 @@ export default class LineCharts extends Component<LineChartType> {
       <ReactEchartsCore
         echarts={echarts}
         option={this.state.options}
-        style={{ height: '200px' }}
         notMerge={true}
       />
     );

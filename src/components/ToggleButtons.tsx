@@ -17,17 +17,23 @@ export default function ToggleButtons<T>({
   onChange,
 }: ToggleButtonsType<T>) {
   return (
-    <ToggleButtonGroup
-      color="primary"
-      value={value}
-      exclusive
-      onChange={(e, val) => onChange(val)}
+    <div
+      style={{
+        margin: '20px auto',
+      }}
     >
-      {buttons.map(({ value, label }) => (
-        <ToggleButton key={label} value={value}>
-          {label}
-        </ToggleButton>
-      ))}
-    </ToggleButtonGroup>
+      <ToggleButtonGroup
+        color="primary"
+        value={value}
+        exclusive
+        onChange={(e, val) => onChange(val)}
+      >
+        {buttons.map(({ value, label }) => (
+          <ToggleButton key={label} value={value}>
+            {label}
+          </ToggleButton>
+        ))}
+      </ToggleButtonGroup>
+    </div>
   );
 }

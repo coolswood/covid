@@ -1,46 +1,35 @@
 declare namespace api {
-  namespace auth {
-    type request = { user: string };
-    type response = {};
+  namespace countries {
+    type request = {};
+    type response = string[];
   }
 
-  namespace swMessage {
-    namespace getTickets {
-      type frontMessage = { event: 'GET_TICKETS' };
-      type backMessage = {
-        [id: string]: {
-          text: string;
-          screenY: number;
-          screenX: number;
-          user?: string;
-          color: string;
-        };
-      };
-    }
-
-    namespace putTicket {
-      type frontMessage = {
-        event: 'PUT_TICKET';
-        data: {
-          id: string;
-          text: string;
-          screenY: number;
-          screenX: number;
-          color: string;
-        };
-      };
-    }
-
-    namespace patchTicket {
-      type frontMessage = {
-        event: 'PATCH_TICKET';
-        data: {
-          id: string;
-          text?: string;
-          screenY?: number;
-          screenX?: number;
-        };
-      };
-    }
+  namespace lineChart {
+    type request = {
+      countries: string[];
+      status: shared.cases;
+      timeline: shared.timeline;
+    };
+    type response = {
+      countries: { country: string; series: number[] }[];
+      dates: string[];
+    };
   }
+
+  namespace barChart {
+    type request = {
+      countries: string[];
+      status: shared.cases;
+    };
+    type response = {
+      countries: string[];
+      data: number[];
+    };
+  }
+}
+
+declare namespace shared {
+  type cases = 'deaths' | 'confirmed';
+  type timeline = 'total' | 'new';
+  type chartToggle = 'cases' | 'ranked';
 }

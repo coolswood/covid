@@ -3,14 +3,16 @@ import cookie, { FastifyCookieOptions } from '@fastify/cookie';
 import cors from '@fastify/cors';
 import axios from 'axios';
 
+type itemType = {
+  date: string;
+  total_cases: number;
+  new_cases: number;
+  total_deaths: number;
+  new_deaths: number;
+};
+
 type dbType = {
-  [key: string]: {
-    date: string;
-    total_cases: number;
-    new_cases: number;
-    total_deaths: number;
-    new_deaths: number;
-  }[];
+  [key: string]: itemType[];
 };
 
 const prepareData = async () => {
@@ -21,12 +23,11 @@ const prepareData = async () => {
   const formattedData: dbType = {};
 
   for (let i in data.data) {
-    // @ts-ignore
     const item = data.data[i];
 
     if (item?.location === undefined) continue;
 
-    formattedData[item.location] = item.data.map((d: any) => ({
+    formattedData[item.location] = item.data.map((d: itemType) => ({
       date: d.date,
       total_cases: d.total_cases,
       new_cases: d.new_cases,
@@ -54,14 +55,14 @@ app.register(cors, {
   methods: ['GET', 'POST', 'PUT'],
 });
 
-app.get<{ Querystring: {}; ServerResponse: string[] }>(
-  '/api/countries',
-  async (request, reply) => {
-    const data = await db;
+app.get<{
+  Querystring: api.countries.request;
+  ServerResponse: api.countries.response;
+}>('/api/countries', async (request, reply) => {
+  const data = await db;
 
-    return reply.send(Object.keys(data));
-  }
-);
+  return reply.send(Object.keys(data));
+});
 
 const mapData = {
   confirmed: {
@@ -75,15 +76,8 @@ const mapData = {
 } as const;
 
 app.post<{
-  Body: {
-    countries: string[];
-    status: 'confirmed' | 'deaths';
-    timeline: 'total' | 'new';
-  };
-  ServerResponse: {
-    countries: { country: string; series: number[] }[];
-    timeline: string[];
-  };
+  Body: api.lineChart.request;
+  ServerResponse: api.lineChart.response;
 }>('/api/lineChart', async (request, reply) => {
   const { countries, status, timeline } = request.body;
   const rawData = await db;
@@ -111,19 +105,29 @@ app.post<{
   });
 });
 
-app.get('/api/barChart', async (request, reply) => {
-  const countries = ['Afghanistan'];
+app.post<{
+  Body: api.barChart.request;
+  ServerResponse: api.barChart.response;
+}>('/api/barChart', async (request, reply) => {
+  const { countries, status } = request.body;
   const rawData = await db;
-  const keys = Object.keys(rawData);
+  const selectedCountries =
+    countries.length !== 0 ? countries : Object.keys(rawData);
 
-  const resultSum = keys.map(country => ({
-    [country]: rawData[country].reduce((acc, cur) => {
-      acc += cur.total_deaths;
-      return acc;
-    }, 0),
-  }));
+  const resultSum = selectedCountries.reduce((acc: number[], country) => {
+    acc.push(
+      rawData[country].at(-1)![
+        status === 'confirmed' ? 'total_cases' : 'total_deaths'
+      ]
+    );
 
-  return reply.send(Object.keys(db));
+    return acc;
+  }, []);
+
+  return reply.send({
+    countries: selectedCountries,
+    data: resultSum,
+  });
 });
 
 (async () => {

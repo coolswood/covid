@@ -1,10 +1,41 @@
-export const ItemTypes = {
-  BOX: 'box',
-};
+export const CASES: {
+  value: shared.cases;
+  label: string;
+}[] = [
+  {
+    value: 'deaths',
+    label: 'Death count',
+  },
+  {
+    value: 'confirmed',
+    label: 'Confirmed cases',
+  },
+];
 
-export const boxSize = {
-  width: 200,
-  height: 300,
-};
+export const TIMELINE: {
+  value: 'new' | 'total';
+  label: string;
+}[] = [
+  {
+    value: 'new',
+    label: 'daily',
+  },
+  {
+    value: 'total',
+    label: 'common',
+  },
+];
 
-export const placeholder = 'Click on text to edit';
+export const CHART_TOGGLE: {
+  value: shared.chartToggle;
+  label: string;
+}[] = [
+  {
+    value: 'cases',
+    label: 'Reported cases',
+  },
+  {
+    value: 'ranked',
+    label: 'Ranked charts',
+  },
+];

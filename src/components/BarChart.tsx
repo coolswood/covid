@@ -9,6 +9,7 @@ import {
 import * as echarts from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
 import React, { Component } from 'react';
+import isEqual from 'lodash/isEqual';
 
 echarts.use([
   VisualMapComponent,
@@ -35,6 +36,14 @@ export default class BarCharts extends Component<BarChartsType> {
     });
   }
 
+  componentDidUpdate(prevProps: BarChartsType, prevState: Readonly<{}>) {
+    if (!isEqual(prevProps.data, this.props.data)) {
+      this.setState({
+        options: this.getOption(),
+      });
+    }
+  }
+
   getOption = () => {
     const { data, countries } = this.props;
 
@@ -46,6 +55,7 @@ export default class BarCharts extends Component<BarChartsType> {
         },
       },
       grid: {
+        top: '10%',
         left: '3%',
         right: '4%',
         bottom: '3%',
@@ -67,7 +77,6 @@ export default class BarCharts extends Component<BarChartsType> {
       ],
       series: [
         {
-          name: 'Direct',
           type: 'bar',
           barWidth: '90%',
           data: data,
@@ -81,7 +90,6 @@ export default class BarCharts extends Component<BarChartsType> {
       <ReactEchartsCore
         echarts={echarts}
         option={this.state.options}
-        style={{ height: '200px' }}
         notMerge={true}
       />
     );

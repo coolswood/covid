@@ -5,28 +5,25 @@ import { LineChartWidget } from 'src/widgets/LineChartWidget';
 import ToggleButtons from 'src/components/ToggleButtons';
 import { useTheme } from '@mui/material/styles';
 import { useQuery } from 'react-query';
-import axios from 'axios';
 import { BarChartWidget } from 'src/widgets/BarChartWidget';
-
-const chartToggle = [
-  {
-    value: 'cases',
-    label: 'Reported cases',
-  },
-  {
-    value: 'ranked',
-    label: 'Ranked charts',
-  },
-];
+import Loader from 'src/components/Loader';
+import { ApiRequest } from 'src/helper';
+import { CHART_TOGGLE } from './constants';
 
 export const App = () => {
   const theme = useTheme();
-  const [selectedGraph, setSelectedGraph] = useState(chartToggle[0].value);
+  const [selectedGraph, setSelectedGraph] = useState<'cases' | 'ranked'>(
+    CHART_TOGGLE[0].value
+  );
   const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
 
   const { isLoading, error, data, isFetching } = useQuery(
     'countries',
-    () => axios.get('/api/countries').then(res => res.data),
+    () =>
+      ApiRequest<api.countries.response, api.countries.request>(
+        'countries',
+        {}
+      ),
     {
       staleTime: Infinity,
       onSuccess: data => {
@@ -35,12 +32,14 @@ export const App = () => {
     }
   );
 
-  if (isLoading) return null;
+  if (isLoading || data === undefined) return <Loader />;
 
   return (
     <div
       style={{
         background: theme.palette.background.default,
+        height: '100vh',
+        padding: '20px',
       }}
     >
       <MultipleSelectCheckmarks
@@ -50,7 +49,7 @@ export const App = () => {
       />
       <div>
         <ToggleButtons
-          buttons={chartToggle}
+          buttons={CHART_TOGGLE}
           onChange={setSelectedGraph}
           value={selectedGraph}
         />
